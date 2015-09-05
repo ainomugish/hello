@@ -29,13 +29,13 @@ $config = [
                 ],
                 'twitter' => [
                     'class' => 'yii\authclient\clients\Twitter',
-                    'consumerKey' => ' wJQgkJNi3y5mTzQYGzsEdRh4e',
-                    'consumerSecret' => ' mV5eoQDrKS7yn9lj7mYmPscpdj5NiGHLzxpXukeAA8WhPLTLho',
+                    'consumerKey' => 'wJQgkJNi3y5mTzQYGzsEdRh4e',
+                    'consumerSecret' => 'mV5eoQDrKS7yn9lj7mYmPscpdj5NiGHLzxpXukeAA8WhPLTLho',
                 ],
                 'facebook' => [
                     'class' => 'yii\authclient\clients\Facebook',
-                    'clientId' => 'facebook_client_id',
-                    'clientSecret' => 'facebook_client_secret',
+                    'clientId' => '1021658714588700',
+                    'clientSecret' => '086d701295620c6df9b7efe983f7bb61',
                 ],
             ],
         ],

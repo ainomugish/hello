@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use Endroid\QrCode\QrCode;
+use RobThree\Auth\TwoFactorAuth;
 
 class SiteController extends Controller
 {
@@ -80,8 +81,29 @@ public $padding =10;
 
     public function actionIndex()
     {
-
+        //$tfa = new TwoFactorAuth('MobiSquid');
+        //$secret = $tfa->createSecret();
+        //$response = Yii::$app->response;
+        //$response->data = ['tfa' => $tfa,'secret' => $secret];
         return $this->render('index');
+        /*return \Yii::createObject([
+            'class' => 'yii\web\Response',
+            'format' => \yii\web\Response::FORMAT_JSON,
+            'data' => [
+                'tfa' => $tfa,
+                'secret' => $secret,
+            ],
+        ]);*/
+    }
+
+    public function actionVerify()
+    {
+        $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
+        $result = $tfa->verifyCode($_SESSION['secret'], $_POST['verification']);
+        if($result){
+            return $this->redirect('/site/login', 301);
+            //Yii::$app->response->redirect('/site/login', 302)->send();use any where else besides action
+        }
     }
 
     public function actionLogin()
