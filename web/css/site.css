@@ -49,6 +49,10 @@ body {
     padding: 14px 24px;
 }
 
+.err{
+    color: #880000;
+}
+
 .not-set {
     color: #c55;
     font-style: italic;

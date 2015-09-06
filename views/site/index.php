@@ -13,6 +13,8 @@ use RobThree\Auth\TwoFactorAuth;
 $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
 $secret = $tfa->createSecret();
 $size=300;
+$session = Yii::$app->session;
+$session->set('secret', $secret);
 
 ?>
 <div class="site-index">
@@ -31,10 +33,12 @@ $size=300;
             <div class="col-lg-4">
                 <h2 class="text">Scan QR Code to Login.</h2>
                 <br><br>
+                <p class="err"><b><?= Html::encode($th) ?></b></p>
                 <ul>Pull out you phone</ul><br>
                 <ul>Open Mobisquid app</ul><br>
                 <ul>Scan the picture on the right</ul><br>
                 <ul>Voila, you will be authenticated</ul>
+
 
                 <!--<p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>-->
             </div>

@@ -85,7 +85,8 @@ public $padding =10;
         //$secret = $tfa->createSecret();
         //$response = Yii::$app->response;
         //$response->data = ['tfa' => $tfa,'secret' => $secret];
-        return $this->render('index');
+        $th = ' ';
+        return $this->render('index',['th'=>$th,]);
         /*return \Yii::createObject([
             'class' => 'yii\web\Response',
             'format' => \yii\web\Response::FORMAT_JSON,
@@ -99,10 +100,21 @@ public $padding =10;
     public function actionVerify()
     {
         $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
-        $result = $tfa->verifyCode($_SESSION['secret'], $_POST['verification']);
-        if($result){
-            return $this->redirect('/site/login', 301);
-            //Yii::$app->response->redirect('/site/login', 302)->send();use any where else besides action
+        $session = Yii::$app->session;
+        if ($session->has('secret') && isset($_POST['verification'])) {
+            $result = $tfa->verifyCode($_SESSION['secret'], $_POST['verification']);
+            if ($result) {
+                return $this->redirect('/site/login', 301);
+                //Yii::$app->response->redirect('/site/login', 302)->send();use any where else besides action
+            }else{
+                $th='Invalid code scanned';
+                return $this->render('index',['th'=>$th,]);
+            }
+
+        }else{
+            $this->view->params['error'] = 'Scan code please';
+            $th='scan code please';
+            return $this->render('index',['th'=>$th,]);
         }
     }
 
