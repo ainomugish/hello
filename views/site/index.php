@@ -12,33 +12,34 @@ $secret = $tfa->createSecret();*/
 use RobThree\Auth\TwoFactorAuth;
 $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
 $secret = $tfa->createSecret();
-$size=400;
+$size=300;
 
 ?>
 <div class="site-index">
 
+    <!--  <div class="">
+          <h2 class="text">MobiSquid</h2>
+
+         <p class="lead">MobiSquid Social Network.</p>
+
+       <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
+    </div>-->
+
     <div class="jumbotron">
-        <h2>MobiSquid</h2>
-
-        <!-- <p class="lead">MobiSquid Social Network.</p>
-
-       <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>-->
-    </div>
-
-    <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-5">
-                <h2>Scan QR Code to Login.</h2>
-                <ul>Pull out you phone</ul>
-                <ul>Open Mobisquid app</ul>
-                <ul>Scan the picture on the right</ul>
+            <div class="col-lg-4">
+                <h2 class="text">Scan QR Code to Login.</h2>
+                <br><br>
+                <ul>Pull out you phone</ul><br>
+                <ul>Open Mobisquid app</ul><br>
+                <ul>Scan the picture on the right</ul><br>
                 <ul>Voila, you will be authenticated</ul>
 
                 <!--<p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>-->
             </div>
 
-            <div class="col-lg-6 pull-right">
+            <div class="col-lg-4 pull-right">
 
                     <?php if (Yii::$app->user->isGuest) {?>
                         <?= Html::img($tfa->getQRCodeImageAsDataUri('Isaac Tumusiime', $secret, $size), ['alt'=>'Scan Code', 'class'=>'']);

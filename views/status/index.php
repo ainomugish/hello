@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'Statuses';
 $this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $dProvider;
 ?>
 <div class="status-index">
 
@@ -20,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $dProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],

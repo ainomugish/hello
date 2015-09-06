@@ -30,7 +30,7 @@ AppAsset::register($this);
         'brandLabel' => 'MobiSquid',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-fixed-top tx',
         ],
     ]);
     $navItems=[
@@ -66,7 +66,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; MobiSquid <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right"><?/*= Yii::powered()*/ ?></p>
     </div>
 </footer>
 

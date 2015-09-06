@@ -3,10 +3,11 @@
 /* @var $this yii\web\View */
 header('Content-Type: image/png');
 //require_once 'vendor/autoload.php';
+use yii\widgets\DetailView;
 use yii\helpers\Html;
 require_once 'qrcode.php';
 
-$this->title = 'About';
+$this->title = 'About MobiSquid';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
@@ -22,11 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
 
-    <code><?= __FILE__ ?></code>
 
 </div>
 
