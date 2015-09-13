@@ -7,8 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'phpDocumentor' => array($vendorDir . '/phpdocumentor/reflection-docblock/src'),
+    'cebe\\gravatar\\' => array($vendorDir . '/cebe/yii2-gravatar'),
     'Stichoza\\Google\\' => array($vendorDir . '/stichoza/google-translate-php/src'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'Imagine' => array($vendorDir . '/imagine/imagine/lib'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
+    'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
+    'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'Diff' => array($vendorDir . '/phpspec/php-diff/lib'),
+    'Aws' => array($vendorDir . '/aws/aws-sdk-php/src'),
 );

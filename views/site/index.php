@@ -14,7 +14,13 @@ $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
 $secret = $tfa->createSecret();
 $size=300;
 $session = Yii::$app->session;
+$session->open();
 $session->set('secret', $secret);
+$session->close();
+/*$session = new Session;
+$session->open();
+$session['secret'] = $secret;
+$session->close();*/
 
 ?>
 <div class="site-index">

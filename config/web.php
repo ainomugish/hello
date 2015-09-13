@@ -8,8 +8,16 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'showScriptName' => false,
-            'enablePrettyUrl' => true
+            'enablePrettyUrl' => true,
+            'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'v1/country',  // our country api rule,
+                    'tokens' => ['{id}' => '<id:\\w+>']
+                ]
+            ],
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -25,12 +33,14 @@ $config = [
             'class' => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\GoogleOpenId'
+                    'class' => 'yii\authclient\clients\GoogleOAuth',
+                    'clientId' => '572419784682-148kjqeqt1h3616snl667mh9ib07fdpk.apps.googleusercontent.com',
+                    'clientSecret' => 'vo3e7U0uLwnZiMF-gjQmI8iC',
                 ],
                 'twitter' => [
                     'class' => 'yii\authclient\clients\Twitter',
-                    'consumerKey' => 'wJQgkJNi3y5mTzQYGzsEdRh4e',
-                    'consumerSecret' => 'mV5eoQDrKS7yn9lj7mYmPscpdj5NiGHLzxpXukeAA8WhPLTLho',
+                    'consumerKey' => 'VAg3AHospP9qy05peBh2VMM4S',
+                    'consumerSecret' => 'Mgc7nGAuRRaXOuGRv1bkKOIz4Jf82cUVjArcvUn2vrmcFIer1Z',
                 ],
                 'facebook' => [
                     'class' => 'yii\authclient\clients\Facebook',
@@ -42,7 +52,8 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
+                    /*'@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'*/
                 ],
             ],
         ],
@@ -78,6 +89,10 @@ $config = [
             'cost' => 12,
             'admins' => ['admin']
         ],
+        'v1' => [
+            'basePath' => '@app/modules/v1',
+            'class' => 'api\modules\v1\Module'   // here is our v1 modules
+        ]
     ],
     'params' => $params,
 ];

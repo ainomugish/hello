@@ -97,24 +97,42 @@ public $padding =10;
         ]);*/
     }
 
-    public function actionVerify()
+
+
+    public function actionChat1()
     {
+        return $this->render('chat1');
+
+    }
+
+    public function actionVerify($verification)
+    {
+        //Yii::$app->controller->enableCsrfValidation = true;
         $tfa = new TwoFactorAuth('MobiSquid', 6, 30, 'sha256');
-        $session = Yii::$app->session;
-        if ($session->has('secret') && isset($_POST['verification'])) {
-            $result = $tfa->verifyCode($_SESSION['secret'], $_POST['verification']);
-            if ($result) {
-                return $this->redirect('/site/login', 301);
-                //Yii::$app->response->redirect('/site/login', 302)->send();use any where else besides action
-            }else{
-                $th='Invalid code scanned';
-                return $this->render('index',['th'=>$th,]);
-            }
+        $secret = null;
+        $secret = Yii::$app->session->get('secret');
+        if($secret != null) {
+
+                $result = $tfa->verifyCode($secret, $verification);
+                if ($result) {
+                    return $this->redirect('/site/login', 301);
+                    //Yii::$app->response->redirect('/site/login', 302)->send();use any where else besides action
+                } else {
+                    $th = 'Invalid code scanned';
+                    return $this->render('index', ['th' => $th,]);
+                }
+
 
         }else{
-            $this->view->params['error'] = 'Scan code please';
-            $th='scan code please';
-            return $this->render('index',['th'=>$th,]);
+            $this->view->params['error'] = '';
+            $th = 'No Secret';
+            return $this->render('index', ['th' => $th,]);
+        }
+    }
+
+    public function actionSendChat() {
+        if (!empty($_POST)) {
+            echo \sintret\chat\ChatRoom::sendChat($_POST);
         }
     }
 

@@ -2,7 +2,12 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use yii;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+
+
+class User extends ActiveRecord implements IdentityInterface
 {
     public $id;
     public $username;
@@ -99,5 +104,13 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+
+    public function getAvatarImage(){
+        return Yii::getAlias($this->avatar);
+    }
+
+    public function getAvatar() {
+        return $this->hasOne(UserSetting::className(),['user_id' =>'id']);
     }
 }
