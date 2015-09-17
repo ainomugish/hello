@@ -3,11 +3,13 @@
 namespace app\models;
 
 use yii;
+/*use dektrium\user\models\User as BaseUser;*/
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 
-class User extends ActiveRecord implements IdentityInterface
+class User extends \dektrium\user\models\User {}
+/*extends ActiveRecord implements IdentityInterface
 {
     public $id;
     public $username;
@@ -35,7 +37,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentity($id)
+    /*public static function findIdentity($id)
     {
         return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
     }
@@ -43,7 +45,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public static function findIdentityByAccessToken($token, $type = null)
+   /* public static function findIdentityByAccessToken($token, $type = null)
     {
         foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
@@ -60,7 +62,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param  string      $username
      * @return static|null
      */
-    public static function findByUsername($username)
+    /*public static function findByUsername($username)
     {
         foreach (self::$users as $user) {
             if (strcasecmp($user['username'], $username) === 0) {
@@ -74,7 +76,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function getId()
+    /*public function getId()
     {
         return $this->id;
     }
@@ -82,7 +84,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function getAuthKey()
+    /*public function getAuthKey()
     {
         return $this->authKey;
     }
@@ -90,7 +92,7 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function validateAuthKey($authKey)
+    /*public function validateAuthKey($authKey)
     {
         return $this->authKey === $authKey;
     }
@@ -101,7 +103,7 @@ class User extends ActiveRecord implements IdentityInterface
      * @param  string  $password password to validate
      * @return boolean if password provided is valid for current user
      */
-    public function validatePassword($password)
+    /*public function validatePassword($password)
     {
         return $this->password === $password;
     }

@@ -25,14 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
         </ul></div>
 
-
+<?php echo Yii::$app->user->identity->username;?>
 
     <form id='mainform' action="#" class="">
 
         <div class="Area">
             <span class='label'>Status</span> <div id="status" class="disconnected">Pending</div>
 
-            <input type="text" class="" id="name" placeholder="annonymous/Name" width="200">
+            <input type="text" class="" id="name" placeholder="<?php echo Yii::$app->user->identity->username;?>" width="200">
 
 
 
