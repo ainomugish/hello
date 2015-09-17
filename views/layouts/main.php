@@ -67,6 +67,7 @@ AppAsset::register($this);
     } else {
         array_push($navItems,
             ['label' => 'Account','items' => [
+                ['label' => 'Chat', 'url' => ['/chat'],],
                 [
                     'label' => Yii::t('app','Friends'),
                     'url' => ['/friend'],
@@ -88,8 +89,8 @@ AppAsset::register($this);
                     'linkOptions' => ['data-method' => 'post']
                 ],*/
             ]
-            ],
-            ['label' => 'Chat', 'url' => ['/site/chat1']]
+            ]
+            /*['label' => 'Chat', 'url' => ['/site/chat1']]*/
         );
     }
     echo Nav::widget([

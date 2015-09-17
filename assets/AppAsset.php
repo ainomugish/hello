@@ -19,8 +19,12 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        //'css/chat.css',
+
     ];
     public $js = [
+        //'browserMqtt.js',
+        //'js/app.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

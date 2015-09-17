@@ -4,9 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use app\models\UserSetting;
 use app\models\User;
-
+use yii\web\View;
+$this->registerJsFile('http://code.jquery.com/jquery-1.9.0.js');
+$this->registerJsFile('@web/js/mqttws31.js');
+$this->registerJsFile('@web/js/app.js');
+$this->registerCssFile('path/to/file.css');
 /* @var $this yii\web\View */
-/* @var $model app\models\Chat */
+/* @var $model app\models\Chat
 $img=new app\models\User;
 $this->title = $model->id;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Chats'), 'url' => ['index']];
@@ -26,7 +30,21 @@ echo $model->avatar;*/
 //$img = \app\models\UserSetting::findOne(['user_id'=>$model->id ])->avatar;
 ?>
 
+    <div id="messages"><ul id="messagelist">
 
+        </ul></div>
+
+
+    <span class='label'>Status</span> <div id="status" class="disconnected">Pending</div>
+    <form id='mainform' action="#">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" width="40" value="anonymous"/> <br/>
+        <label for="message">Message</label>
+        <input id="message" name="message" type="text" width="200" height="200"/>
+        <input id="submit" type="submit" value="go"/>
+    </form>
+
+<?/*
     <h1><?= Html::encode($this->title) ?></h1>
 
 
@@ -51,4 +69,4 @@ echo $model->avatar;*/
     );
     ?>
 
-</div>
+
