@@ -14,9 +14,10 @@ $config = [
             'rules' => [
                 [
                     'class' => 'yii\rest\UrlRule',
-                    'controller' => 'v1/country',  // our country api rule,
+                    'controller' => 'api/v1/country',  // our country api rule,
                     'tokens' => ['{id}' => '<id:\\w+>']
-                ]
+                ],
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
             ],
         ],
         'request' => [
@@ -93,7 +94,7 @@ $config = [
             'admins' => ['admin']
         ],
         'v1' => [
-            'basePath' => '@app/modules/v1',
+            //'basePath' => '@app/modules/v1',
             'class' => 'api\modules\v1\Module'   // here is our v1 modules
         ]
     ],
