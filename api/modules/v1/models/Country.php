@@ -6,7 +6,7 @@
  * Time: 1:41 PM
  */
 
-namespace api\modules\v1\models;
+namespace app\api\modules\v1\models;
 
 use \yii\db\ActiveRecord;
 /**
@@ -34,7 +34,7 @@ class Country extends ActiveRecord
 
     /**
      * Define rules for validation
-     */
+    
     public function rules()
     {
         return [

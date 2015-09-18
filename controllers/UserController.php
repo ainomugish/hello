@@ -13,5 +13,5 @@ use yii\rest\ActiveController;
 
 class UserController extends ActiveController
 {
-    public $modelClass = 'app\models\UserM';
+    public $modelClass = 'app\models\User';
 }

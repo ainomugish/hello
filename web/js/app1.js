@@ -33,7 +33,7 @@ $(document).ready(function() {
     }
     var onFailure = function(error) {
         $('#status').toggleClass('status__indicator',false);
-        $('#status1').text("Failure");
+        $('#status1').text("Failed to connet");
     }
 
     function onConnectionLost(responseObject) {

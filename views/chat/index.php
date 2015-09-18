@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 $this->registerJsFile('http://code.jquery.com/jquery-1.9.0.js');
-$this->registerJsFile('@web/js/jquery.js');
+
 $this->registerJsFile('@web/js/mqttws31.js');
 $this->registerJsFile('@web/js/app1.js');
 

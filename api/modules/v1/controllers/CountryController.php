@@ -6,7 +6,7 @@
  * Time: 1:44 PM
  */
 
-namespace api\modules\v1\controllers;
+namespace app\api\modules\v1\controllers;
 
 use yii\rest\ActiveController;
 
@@ -17,5 +17,5 @@ use yii\rest\ActiveController;
  */
 class CountryController extends ActiveController
 {
-    public $modelClass = 'api\modules\v1\models\Country';
+    public $modelClass = 'app\api\modules\v1\models\Country';
 }
