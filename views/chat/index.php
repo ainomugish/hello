@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="input">
                     <input id="messagebox" /><span class="input__emoticon"></span></div>
                 <div class="" >
-
+                    <input id="name" name="name" type="hidden" width="40" value="<?php echo Yii::$app->user->identity->username;?>"/>
                     <input type="submit"  value="SEND"/>
 
                 </div>
@@ -156,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <input id="name" name="name" type="text" width="40" value="anonymous"/> <br/>
         <label for="message">Message</label>
         <textarea id="message" name="message" type="text" rows="6"></textarea>
-        <input id="submit" type="submit" value="Send" class="btn btn-success"/>-->
+        <input id="submit" type="submit" value="Send" class="btn btn-success"/>
     </form>
 
 </div>
