@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use Endroid\QrCode\QrCode;
 use RobThree\Auth\TwoFactorAuth;
+use app\models\RelationshipSearch;
 
 class SiteController extends Controller
 {
@@ -41,6 +42,7 @@ public $padding =10;
             ],
         ];
     }
+
 
     public function actions()
     {
@@ -77,6 +79,21 @@ public $padding =10;
 
         }
         return $this->render('login');
+    }
+
+    /**
+     * Search friend Relationships.
+     * @return mixed
+     */
+    public function actionSearch()
+    {
+        $searchModel = new RelationshipSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionIndex()
@@ -189,5 +206,19 @@ public $padding =10;
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionProfile()
+    {
+        return $this->render('profile');
+    }
+
+    public function actionMessage()
+    {
+        return $this->render('message');
+    }
+    public function actionNotification()
+    {
+        return $this->render('notification');
     }
 }

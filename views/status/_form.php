@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'message')->textarea(['rows' => 6, 'columns' => 0]) ?>
 
     <?=
     $form->field($model, 'permissions')->dropDownList($model->getPermissions(),

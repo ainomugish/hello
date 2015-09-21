@@ -24,7 +24,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
+<div class="wrap ">
     <?php
     NavBar::begin([
         'brandLabel' => 'MobiSquid',
@@ -55,25 +55,25 @@ AppAsset::register($this);
             ],*/
         ],
     ];
-    $navItems=[
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Status', 'url' => ['/status/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']]
-    ];
+    $navItems=[];
 
     if (Yii::$app->user->isGuest) {
-        array_push($navItems,['label' => 'Sign In', 'url' => ['/user/login']],['label' => 'Sign Up', 'url' => ['/user/register']]);
+        array_push($navItems,['label' => 'Contact Us', 'url' => ['/site/contact']],['label' => 'Sign In', 'url' => ['/user/login']],['label' => 'Sign Up', 'url' => ['/user/register']]);
     } else {
         array_push($navItems,
+            //['label' => '', 'url' => ['//index']],
+            ['label' => ' '.Yii::$app->user->identity->profile->name , 'url' => ['/profile']],
+            ['label' => 'Home', 'url' => ['/status/index']],
+            ['label' => 'Messages', 'url' => ['/site/message']],
+            ['label' => 'Notifications', 'url' => ['/site/notification']],
             ['label' => 'Account','items' => [
                 ['label' => 'Chat', 'url' => ['/chat'],],
                 [
                     'label' => Yii::t('app','Friends'),
-                    'url' => ['/friend'],
+                    'url' => ['/relationship'],
                 ],
                 [
-                    'label' => Yii::t('app','Contact information'),
+                    'label' => Yii::t('app','Contact info'),
                     'url' => ['/user-contact'],
                 ],
                 [

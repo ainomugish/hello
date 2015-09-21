@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use app\models\Status;
 
 /**
- * StatusSearch represents the model behind the search form about `app\models\Status`.
+ * StatusSearch represents the model behind the search form about `app\models\Status1`.
  */
 class StatusSearch extends Status
 {
@@ -18,7 +18,7 @@ class StatusSearch extends Status
     public function rules()
     {
         return [
-            [['id', 'permissions', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'permissions', 'created_at', 'updated_at', 'user_id'], 'integer'],
             [['message'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class StatusSearch extends Status
             'permissions' => $this->permissions,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'message', $this->message]);

@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\authclient\clients\Facebook;
 
 /**
  * This is the model class for table "user_contact".
@@ -10,21 +11,24 @@ use Yii;
  * @property integer $id
  * @property string $contact_type
  * @property string $info
+ * @property integer $user_id
+ *
+ * @property User $user
  */
 class UserContact extends \yii\db\ActiveRecord
 {
-    const TYPE_OTHER = 0;
-    const TYPE_PHONE = 10;
-    const TYPE_SKYPE = 20;
-    const TYPE_FACEBOOK = 30;
-    const TYPE_GOOGLE = 40;
-    const TYPE_MSN = 50;
-    const TYPE_AIM = 60;
-    const TYPE_YAHOO = 70;
-    const TYPE_ICQ = 80;
-    const TYPE_JABBER = 90;
-    const TYPE_QQ = 100;
-    const TYPE_GADU = 110;
+    const TYPE_OTHER = 'Other';
+    const TYPE_PHONE = 'Phone';
+    const TYPE_SKYPE = 'Skype';
+    const TYPE_FACEBOOK = 'Facebook Messenger';
+    const TYPE_GOOGLE = 'Google Talk';
+    const TYPE_MSN = 'MSN';
+    const TYPE_AIM = 'AIM';
+    const TYPE_YAHOO = 'Yahoo Messenger';
+    const TYPE_ICQ = 'ICQ';
+    const TYPE_JABBER = 'Jabber';
+    const TYPE_QQ = 'QQ';
+    const TYPE_GADU = 'Gadu-Gadu';
 
 
     /**
@@ -42,7 +46,8 @@ class UserContact extends \yii\db\ActiveRecord
     {
         return [
             [['contact_type', 'info'], 'required'],
-            [['contact_type', 'info'], 'string']
+            [['contact_type', 'info'], 'string'],
+            [['user_id'], 'integer']
         ];
     }
 
@@ -80,6 +85,15 @@ class UserContact extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'contact_type' => Yii::t('app', 'Contact Type'),
             'info' => Yii::t('app', 'Info'),
+            'user_id' => Yii::t('app', 'User ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

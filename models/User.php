@@ -115,4 +115,4 @@ class User extends \dektrium\user\models\User {}
     public function getAvatar() {
         return $this->hasOne(UserSetting::className(),['user_id' =>'id']);
     }
-}
+}*/

@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\UserContact;
+use app\models\Relationship;
 
 /**
- * UserContactSearch represents the model behind the search form about `app\models\UserContact`.
+ * RelationshipSearch represents the model behind the search form about `app\models\Relationship`.
  */
-class UserContactSearch extends UserContact
+class RelationshipSearch extends Relationship
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class UserContactSearch extends UserContact
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['contact_type', 'info'], 'safe'],
+            [['user_one_id', 'user_two_id', 'status', 'action_user_id'], 'integer'],
         ];
     }
 
@@ -39,9 +38,9 @@ class UserContactSearch extends UserContact
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params,$id)
     {
-        $query = UserContact::find();
+        $query = Relationship::find()->where(['user_one_id'=> $id])->orFilterWhere(['user_two_id'=>$id])->andFilterWhere(['status'=>1]) ;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,12 +55,11 @@ class UserContactSearch extends UserContact
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
+            'user_one_id' => $this->user_one_id,
+            'user_two_id' => $this->user_two_id,
+            'status' => $this->status,
+            'action_user_id' => $this->action_user_id,
         ]);
-
-        $query->andFilterWhere(['like', 'contact_type', $this->contact_type])
-            ->andFilterWhere(['like', 'info', $this->info]);
 
         return $dataProvider;
     }

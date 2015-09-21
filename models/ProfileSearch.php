@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\UserContact;
+use app\models\Profile;
 
 /**
- * UserContactSearch represents the model behind the search form about `app\models\UserContact`.
+ * ProfileSearch represents the model behind the search form about `app\models\Profile`.
  */
-class UserContactSearch extends UserContact
+class ProfileSearch extends Profile
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UserContactSearch extends UserContact
     public function rules()
     {
         return [
-            [['id', 'user_id'], 'integer'],
-            [['contact_type', 'info'], 'safe'],
+            [['user_id'], 'integer'],
+            [['name', 'public_email', 'gravatar_email', 'gravatar_id', 'location', 'website', 'bio'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UserContactSearch extends UserContact
      */
     public function search($params)
     {
-        $query = UserContact::find();
+        $query = Profile::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,12 +56,16 @@ class UserContactSearch extends UserContact
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
             'user_id' => $this->user_id,
         ]);
 
-        $query->andFilterWhere(['like', 'contact_type', $this->contact_type])
-            ->andFilterWhere(['like', 'info', $this->info]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+            ->andFilterWhere(['like', 'public_email', $this->public_email])
+            ->andFilterWhere(['like', 'gravatar_email', $this->gravatar_email])
+            ->andFilterWhere(['like', 'gravatar_id', $this->gravatar_id])
+            ->andFilterWhere(['like', 'location', $this->location])
+            ->andFilterWhere(['like', 'website', $this->website])
+            ->andFilterWhere(['like', 'bio', $this->bio]);
 
         return $dataProvider;
     }

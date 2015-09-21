@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="status-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Status', ['create'], ['class' => 'btn btn-success']) ?>
@@ -35,5 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+    <p>
+        <?= Html::a('see status', ['view?id=$id']/*, ['class' => 'btn btn-success'])*/) ?>
+    </p>
 
 </div>

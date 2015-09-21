@@ -33,8 +33,8 @@ class Country extends ActiveRecord
     }
 
     /**
-     * Define rules for validation
-    
+     * Define rules for validation*/
+
     public function rules()
     {
         return [

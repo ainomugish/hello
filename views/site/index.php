@@ -32,18 +32,18 @@ $session->close();*/
 
        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>-->
-
+   <?php if (Yii::$app->user->isGuest) {?>
     <div class="jumbotron">
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 text-center">
                 <h2 class="text">Scan QR Code to Login.</h2>
                 <br><br>
                 <p class="err"><b><?= Html::encode($th) ?></b></p>
-                <ul>Pull out you phone</ul><br>
-                <ul>Open Mobisquid app</ul><br>
-                <ul>Scan the picture on the right</ul><br>
-                <ul>Voila, you will be authenticated</ul>
+                <p >Pull out you phone</p><br>
+                <p>Open Mobisquid App</p><br>
+                <p>Scan the picture on the right</p><br>
+                <p>Voila, you will be authenticated</p>
 
 
                 <!--<p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>-->
@@ -64,4 +64,8 @@ $session->close();*/
         </div>
 
     </div>
+<?php }
+    else{
+
+    }?>
 </div>

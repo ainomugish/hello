@@ -13,6 +13,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="user-contact-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <div class="col-lg-2"></div>
+
+
+    <div class="col-lg-5">
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -28,10 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+
             'contact_type:ntext',
             'info:ntext',
         ],
     ]) ?>
+        </div>
 
 </div>

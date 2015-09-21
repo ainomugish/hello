@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Status;
-use app\models\StatusSearch;
+use app\models\Profile;
+use app\models\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StatusController implements the CRUD actions for Status model.
+ * ProfileController implements the CRUD actions for Profile model.
  */
-class StatusController extends Controller
+class ProfileController extends Controller
 {
     public function behaviors()
     {
@@ -27,19 +27,20 @@ class StatusController extends Controller
     }
 
     /**
-     * Lists all Status models.
+     * Lists Profile Landing
      * @return mixed
      */
     public function actionIndex()
     {
-        //$id = Yii::$app->user->getId();
-        $id = Status::initialize(Yii::$app->user->getId());
-        return $this->redirect(['update', 'id' => $id]);
+        $id = Yii::$app->user->getId();
+
+        //$us = Status::find()->where(['id'=>$id])->one();
+        return $this->redirect(['view', 'id' => $id]);
 
     }
 
     /**
-     * Displays a single Status model.
+     * Displays a single Profile model.
      * @param integer $id
      * @return mixed
      */
@@ -51,20 +52,16 @@ class StatusController extends Controller
     }
 
     /**
-     * Creates a new Status model.
+     * Creates a new Profile model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Status();
+        $model = new Profile();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->created_at = time();
-            $model->updated_at = time();
-            if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -73,7 +70,7 @@ class StatusController extends Controller
     }
 
     /**
-     * Updates an existing Status model.
+     * Updates an existing Profile model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -83,7 +80,7 @@ class StatusController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->user_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -92,7 +89,7 @@ class StatusController extends Controller
     }
 
     /**
-     * Deletes an existing Status model.
+     * Deletes an existing Profile model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -105,15 +102,15 @@ class StatusController extends Controller
     }
 
     /**
-     * Finds the Status model based on its primary key value.
+     * Finds the Profile model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Status the loaded model
+     * @return Profile the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Status::findOne($id)) !== null) {
+        if (($model = Profile::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
