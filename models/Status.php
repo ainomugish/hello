@@ -43,7 +43,7 @@ class Status extends \yii\db\ActiveRecord
 
     // creates a record for the active user and sets all of the default status:
     public static function initialize($user_id) {
-        $st = Status::find()->where(['user_id'=>$user_id])->one();
+        $st = Status::find()->where(['id'=>$user_id])->one();
         if (is_null($st)) {
             $st=new Status;
             $st->id = $user_id;
