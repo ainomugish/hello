@@ -35,11 +35,23 @@ class RelationshipController extends Controller
         $id = Yii::$app->user->getId();
         $searchModel = new RelationshipSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id);
+        //$query = Relationship::find()->where(['user_one_id'=> $id])->orFilterWhere(['user_two_id'=>$id])->andFilterWhere(['status'=>1]);
+        $query = Relationship::find()->where('user_one_id = :id',[':id' => $id])->orWhere('user_two_id = :id',[':id' => $id])->andWhere('status = :one',[':one'=> 1])->all();
+        //print_r($query);
+        $relation= new Relationship();
 
+        if (!empty($query)) {
+            //echo '<ul>';
+            foreach ($query as $rel) {
+                //print_r($rel);
+                $friend = $relation->getFriend($rel);
+                //print_r($friend->email);echo '<br>';
+            }
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'friendslist' => $query,
+           // 'dataProvider' => $query,
         ]);
     }
 

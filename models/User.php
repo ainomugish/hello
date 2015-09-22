@@ -8,7 +8,16 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 
-class User extends \dektrium\user\models\User {}
+class User extends \dektrium\user\models\User {
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserSettings()
+    {
+        return $this->hasMany(UserSetting::className(), ['user_id' => 'id']);
+    }
+}
 /*extends ActiveRecord implements IdentityInterface
 {
     public $id;

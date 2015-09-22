@@ -98,10 +98,13 @@ class Relationship extends \yii\db\ActiveRecord
      */
     public function getFriend(Relationship $rel)
     {
-        if ($rel->userOne->id === Yii::$app->user->getId()) {
-            $friend = $rel->getUserTwo();
+        if ($rel->user_one_id == Yii::$app->user->getId()) {
+            /*print_r($rel->user_one_id);
+            print_r(Yii::$app->user->getId());*/
+            $friend = $rel->userTwo;
         } else {
-            $friend = $rel->getUserOne();
+            //print_r($rel->user_one_id);
+            $friend = $rel->userOne;
         }
 
         return $friend;

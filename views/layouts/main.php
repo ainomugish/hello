@@ -30,9 +30,18 @@ AppAsset::register($this);
         'brandLabel' => 'MobiSquid',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-fixed-top tx',
+            'class' => 'navbar-fixed-top',
         ],
     ]);
+
+    /*echo '<form class="navbar-form navbar-right" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search MobiSquid" name="srch-term" id="srch-term">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>';*/
+
     $menuItems[] = [
         'label' => 'Account',
         'items' => [
@@ -59,10 +68,10 @@ AppAsset::register($this);
 
     if (Yii::$app->user->isGuest) {
         array_push($navItems,['label' => 'Contact Us', 'url' => ['/site/contact']],['label' => 'Sign In', 'url' => ['/user/login']],['label' => 'Sign Up', 'url' => ['/user/register']]);
-    } else {
+    } else { $model= new app\models\UserSetting();
         array_push($navItems,
-            //['label' => '', 'url' => ['//index']],
-            ['label' => ' '.Yii::$app->user->identity->profile->name , 'url' => ['/profile']],
+            /*['label' => '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sm_'.$model->findOne(Yii::$app->user->id)->avatar .'" class="profile-image"/>', 'url' => ['#']],*/
+            ['label' => Yii::$app->user->identity->profile->name , 'url' => ['/profile']],
             ['label' => 'Home', 'url' => ['/status/index']],
             ['label' => 'Messages', 'url' => ['/site/message']],
             ['label' => 'Notifications', 'url' => ['/site/notification']],
@@ -92,11 +101,13 @@ AppAsset::register($this);
             ]
             /*['label' => 'Chat', 'url' => ['/site/chat1']]*/
         );
+
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $navItems,
     ]);
+
     NavBar::end();
     ?>
 
