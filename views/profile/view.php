@@ -12,11 +12,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profile-view">
 
-   <!-- <h1><?/*= Html::encode($this->title) */?></h1>-->
+   <!-- -->
     <div class="col-lg-2"></div>
 
 
     <div class="col-lg-5">
+        <h3><?= Html::encode($this->title).' profile' ?></h3>
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [

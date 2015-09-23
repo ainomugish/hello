@@ -21,6 +21,7 @@ $session->close();
 $session->open();
 $session['secret'] = $secret;
 $session->close();*/
+use app\controllers\ProfileController;
 
 ?>
 <div class="site-index">
@@ -57,6 +58,7 @@ $session->close();*/
                             ?>
                     <?php } else {
 
+
                 }
                 ?>
             </div>
@@ -66,6 +68,7 @@ $session->close();*/
     </div>
 <?php }
     else{
+
 
     }?>
 </div>

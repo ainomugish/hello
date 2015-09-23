@@ -102,8 +102,19 @@ public $padding =10;
         //$secret = $tfa->createSecret();
         //$response = Yii::$app->response;
         //$response->data = ['tfa' => $tfa,'secret' => $secret];
-        $th = ' ';
-        return $this->render('index',['th'=>$th,]);
+
+        //return $this->render('index',['th'=>$th,]);
+        if(Yii::$app->user->isGuest) {
+            $th = ' ';
+            return $this->render('index',['th'=>$th]);
+        } else {
+            $id = Yii::$app->user->getId();
+            //$url = Url::to(['profile/view', 'id' => $id]);
+            //$vw= new ProfileController;
+            //$this->render($url);
+            $this->redirect(array('profile/view', 'id' => $id));
+            //$this->redirect(<contoroller>/<action>)
+		}
         /*return \Yii::createObject([
             'class' => 'yii\web\Response',
             'format' => \yii\web\Response::FORMAT_JSON,

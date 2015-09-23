@@ -34,7 +34,7 @@ AppAsset::register($this);
         ],
     ]);
 
-    /*echo '<form class="navbar-form navbar-right" role="search">
+     /*echo '<form class="navbar-form navbar-right" role="search">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Search MobiSquid" name="srch-term" id="srch-term">
             <div class="input-group-btn">
@@ -71,7 +71,7 @@ AppAsset::register($this);
     } else { $model= new app\models\UserSetting();
         array_push($navItems,
             /*['label' => '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sm_'.$model->findOne(Yii::$app->user->id)->avatar .'" class="profile-image"/>', 'url' => ['#']],*/
-            ['label' => Yii::$app->user->identity->profile->name , 'url' => ['/profile']],
+            ['label' => Yii::$app->user->identity->profile->name , 'url' => ['/profile/update?id='/*.Yii::$app->user->id*/]],
             ['label' => 'Home', 'url' => ['/status/index']],
             ['label' => 'Messages', 'url' => ['/site/message']],
             ['label' => 'Notifications', 'url' => ['/site/notification']],
