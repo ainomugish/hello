@@ -2,9 +2,11 @@
 
 namespace app\controllers;
 
+use app\models\Profile;
 use Yii;
 use app\models\Relationship;
 use app\models\RelationshipSearch;
+use app\models\ProfileSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,12 +36,12 @@ class RelationshipController extends Controller
     {
         $id = Yii::$app->user->getId();
         $searchModel = new RelationshipSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams,$id);
+        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         //$query = Relationship::find()->where(['user_one_id'=> $id])->orFilterWhere(['user_two_id'=>$id])->andFilterWhere(['status'=>1]);
-        $query = Relationship::find()->where('user_one_id = :id',[':id' => $id])->orWhere('user_two_id = :id',[':id' => $id])->andWhere('status = :one',[':one'=> 1])->all();
+        //$query = Relationship::find()->where('user_one_id = :id',[':id' => $id])->orWhere('user_two_id = :id',[':id' => $id])->andWhere('status = :one',[':one'=> 1])->all();
         //print_r($query);
         $relation= new Relationship();
-
+/*
         if (!empty($query)) {
             //echo '<ul>';
             foreach ($query as $rel) {
@@ -47,14 +49,84 @@ class RelationshipController extends Controller
                 $friend = $relation->getFriend($rel);
                 //print_r($friend->email);echo '<br>';
             }
-        }
+        }*/
 
         return $this->render('index', [
-            'friendslist' => $query,
+            'friendslist' => $query=$relation->getFriendList($id),
            // 'dataProvider' => $query,
         ]);
     }
 
+    /**
+     * friend request
+     */
+
+    public function actionFriend($user_two_id)
+    {
+
+        //if($model==$this->findModel( $user_two_id))
+        $model = new Relationship();//;
+        $user_one = Yii::$app->user->id;
+        $action_user_id = $user_one;
+        $user_two = $user_two_id;
+
+        if ($user_one > $user_two) {
+            $temp = $user_one;
+            $user_one = $user_two;
+            $user_two = $temp;
+        }
+
+
+        $model->user_one_id=$user_one;
+        $model->user_two_id=$user_two;
+        $model->status= 0;
+        $model->action_user_id=$action_user_id;
+        if($model->save())
+            return $this->redirect('search');
+
+        /*
+        $relation= new Relationship();
+
+        $relation;
+        return $this->render('search', [
+            'friendsearch' => $query,
+            'searchModel' => $searchModel,
+        ]);*/
+    }
+
+
+    public function actionFriendr()
+    {
+       /* $relation= new Relationship();
+        //$relation->getFriendRequests();
+
+        return $this->render('search', [
+            'friendrequests' => $relation->getFriendRequests(),
+            // 'dataProvider' => $query,
+        ]);*/
+
+
+    }
+
+    /**
+     *search friends
+     * @return mixed
+     */
+    public function actionSearch()
+    {
+
+        $searchModel = new ProfileSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $query = $dataProvider->getModels();
+        $relation= new Relationship();
+        $friendrequests = $relation->getFriendRequests();
+
+        return $this->render('search', [
+           'friendsearch' => $query,
+            'searchModel' => $searchModel,
+            'friendrequests' => $friendrequests,
+        ]);
+    }
 
     /**
      * Displays a single Relationship model.

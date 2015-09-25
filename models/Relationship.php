@@ -110,4 +110,31 @@ class Relationship extends \yii\db\ActiveRecord
         return $friend;
 
     }
+
+    /**
+     * @param $id Get user friends
+     * @return array|\yii\db\ActiveRecord[]
+     */
+
+    public function getFriendList($id)
+        {
+            $query = Relationship::find()->where('user_one_id = :id',[':id' => $id])->orWhere('user_two_id = :id',[':id' => $id])->andWhere('status = :one',[':one'=> 1])->all();
+            return $query;
+    }
+
+    /**
+     * Get the list of friend requests for the logged in user
+     *
+     * @return array Relationship Objects
+     */
+    public function getFriendRequests()
+    {
+        $id= Yii::$app->user->getId();
+        $query = Relationship::find()->where('user_one_id = :id',[':id' => $id])->orWhere('user_two_id = :id',[':id' => $id])->andWhere('status = :one',[':one'=> 0])->andWhere('action_user_id != :id',[':id' => $id])->all();
+        //print_r($query);
+        //print_r($id);
+        return $query;
+    }
+
+
 }

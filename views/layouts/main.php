@@ -34,7 +34,7 @@ AppAsset::register($this);
             'style' => 'font-family:verdana;font-size: 15px; color: #555',
         ],
     ]);
-    $model= new \app\models\UserSetting();
+    //$model= new \app\models\UserSetting();
     //echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sm_'.$model->findOne(Yii::$app->getUser()->id)->avatar .'" class="profile-image pull-right"/>';
      /*echo '<form class="navbar-form navbar-right" role="search">
         <div class="input-group">
@@ -69,6 +69,7 @@ AppAsset::register($this);
     ];
     $navItems=[];
     /*#330*0000#ok
+    0792424297-kibo
     ##002#ok*/
 
     if (Yii::$app->user->isGuest) {

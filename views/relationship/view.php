@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             <p>
+
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'user_one_id' => $model->user_one_id, 'user_two_id' => $model->user_two_id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'user_one_id' => $model->user_one_id, 'user_two_id' => $model->user_two_id], [
                     'class' => 'btn btn-danger',

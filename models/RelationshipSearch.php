@@ -38,9 +38,9 @@ class RelationshipSearch extends Relationship
      *
      * @return ActiveDataProvider
      */
-    public function search($params,$id)
+    public function search($params)
     {
-        $query = Relationship::find()->where(['user_one_id'=> $id])->orFilterWhere(['user_two_id'=>$id])->andFilterWhere(['status'=>1]) ;
+        $query = Relationship::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

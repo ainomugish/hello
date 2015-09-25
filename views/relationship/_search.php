@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\RelationshipSearch */
@@ -11,17 +11,13 @@ use yii\widgets\ActiveForm;
 <div class="relationship-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'layout' => 'inline',
+        'action' => ['search'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'user_one_id') ?>
+    <?= $form->field($model, 'name') ?>
 
-    <?= $form->field($model, 'user_two_id') ?>
-
-    <?= $form->field($model, 'status') ?>
-
-    <?= $form->field($model, 'action_user_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
@@ -31,3 +27,4 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+

@@ -45,6 +45,7 @@ class ProfileSearch extends Profile
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            //'pagination' => true,
         ]);
 
         $this->load($params);
