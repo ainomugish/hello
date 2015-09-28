@@ -4,7 +4,6 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\web\View;
 $this->registerJsFile('http://code.jquery.com/jquery-1.9.0.js');
-
 $this->registerJsFile('@web/js/mqttws31.js');
 $this->registerJsFile('@web/js/app1.js');
 
@@ -83,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <i class="status__indicator" id="status"></i>
                     <div class="meta">
                         <div class="meta__name"><?php echo Yii::$app->user->identity->username;?></div>
-                        <div class="meta__sub--light" id="status1">ONLINE !</div>
+                        <div class="meta__sub--light" id="status1">OFFLINE !</div>
                     </div>
                 </div>
                 <ul class="function-list">
@@ -108,6 +107,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </form
         </footer>
     </section>
+
+
 </div>
 
 

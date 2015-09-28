@@ -25,6 +25,18 @@ class RelationshipController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'only' => ['index','create','update','view'],
+                'rules' => [
+                // allow aut hent icat ed users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    // everyt hing else is denied
+                ],
+             ],
         ];
     }
 
@@ -82,7 +94,8 @@ class RelationshipController extends Controller
         $model->status= 0;
         $model->action_user_id=$action_user_id;
         if($model->save())
-            return $this->redirect('search');
+            $success='Friend request Sent, Find more friends';
+            return $this->redirect('search',['success'=>$success,]);
 
         /*
         $relation= new Relationship();
@@ -95,16 +108,29 @@ class RelationshipController extends Controller
     }
 
 
-    public function actionFriendr()
+    public function actionFrienda($user_two_id)
     {
-       /* $relation= new Relationship();
-        //$relation->getFriendRequests();
+        $user_one = Yii::$app->user->id;
 
-        return $this->render('search', [
-            'friendrequests' => $relation->getFriendRequests(),
-            // 'dataProvider' => $query,
-        ]);*/
+        $action_user_id = $user_one;
+        $user_two = $user_two_id;
 
+        if ($user_one > $user_two) {
+            $temp = $user_one;
+            $user_one = $user_two;
+            $user_two = $temp;
+        }
+        print_r($user_two_id);
+
+        $model = $this->findModel($user_one, $user_two);
+        //print_r($model);
+        $model->status=1;
+        $model->user_one_id=$user_one;
+        $model->user_two_id=$user_two;
+        $model->action_user_id=$action_user_id;
+        $model->save();
+
+        return $this->redirect('index');
 
     }
 
