@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\UserSetting;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Profile */
@@ -14,7 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
    <!-- -->
     <div class="col-lg-2">
-
+       <?php $model1=new UserSetting();
+        echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$model1->findOne($model->user_id)->avatar.'" class="profile-image"/>';
+        ?>
     </div>
 
 
