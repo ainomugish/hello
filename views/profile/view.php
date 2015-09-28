@@ -16,8 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
    <!-- -->
     <div class="col-lg-2">
        <?php $model1=new UserSetting();
-       if ($model1->avatar<>'') {
-        echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$model1->findOne($model->user_id)->avatar.'" class="profile-image"/>';
+       $mod=$model1->findOne($model->user->getId());
+       if ($mod) {
+        echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$mod->avatar.'" class="profile-image"/>';
        } else {
            echo \cebe\gravatar\Gravatar::widget([
                'email' => app\models\User::find()->where(['id'=>Yii::$app->user->getId()])->one()->email,

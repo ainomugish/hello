@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use app\models\UserSetting;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Profile */
@@ -14,7 +15,24 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="profile-update">
 
-    <div class="col-lg-2"></div>
+    <div class="col-lg-2">
+        <?php $model1=new UserSetting();
+        $mod=$model1->findOne($model->user->getId());
+        if ($mod) {
+            echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$mod->avatar.'" class="profile-image"/>';
+        } else {
+            echo \cebe\gravatar\Gravatar::widget([
+                'email' => app\models\User::find()->where(['id'=>Yii::$app->user->getId()])->one()->email,
+                'options' => [
+                    'class'=>'profile-image',
+                    'alt' => app\models\User::find()->where(['id'=>Yii::$app->user->getId()])->one()->username,
+                ],
+                'size' => 128,
+            ]);
+
+        }
+        ?>
+    </div>
 
 
     <div class="col-lg-5">

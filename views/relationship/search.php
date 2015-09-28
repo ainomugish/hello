@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 echo '<li><a href="'.$url2.'"' . $friend->id .'">' . ucfirst($friend->username) . '</a><br>';
                 echo '<li><a href="'.$url3.'">'.'Accept Freind Request'.'</a><br>';
                 $model= new \app\models\UserSetting;
-                echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$model->findOne($friend->id)->avatar .'" class="profile-image"/></li>';
+                echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sm_'.$model->findOne($friend->id)->avatar .'" class="profile-image"/></li>';
             }
             echo '</ul>';
         } else {
@@ -61,12 +61,24 @@ $this->params['breadcrumbs'][] = $this->title;
                 $rel;
                 $url = Url::to(['profile/view', 'id' => $rel->user_id]);
                 $url1 = Url::to(['relationship/friend', 'user_two_id' => $rel->user_id]);
-                echo '<li><a href="'.$url.'">' . $rel->name . '</a><br>';
-                //echo '<li><a href="'.$url1.'">' . 'Send Friend Request' . '</a><br>';
-               // $model= new \app\models\UserSetting;
-                //$mod=$model->find($rel->user_id)->avatar;
 
-                //echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sqr_'.$mod.'" class="profile-image"/></li>';
+                //echo '<li><a href="'.$url1.'">' . 'Send Friend Request' . '</a><br>';
+               $model1= new \app\models\UserSetting;
+                $mod=$model1->findOne($rel->user->getId());
+                if ($mod) {
+                    echo '<img src="'.Yii::getAlias('@web').'/uploads/avatar/sm_'.$mod->avatar.'" class="profile-image"/>';
+                } else {
+                    echo \cebe\gravatar\Gravatar::widget([
+                        'email' => app\models\User::find()->where(['id'=>Yii::$app->user->getId()])->one()->email,
+                        'options' => [
+                            'class'=>'profile-image',
+                            'alt' => app\models\User::find()->where(['id'=>Yii::$app->user->getId()])->one()->username,
+                        ],
+                        'size' => 30,
+                    ]);
+
+                }
+                echo '<li><a href="'.$url.'">' . $rel->name . '</a><br>';
             }
             echo '</ul>';
         } else {

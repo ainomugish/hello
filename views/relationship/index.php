@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             }
             echo '</ul>';
         } else {
-            echo '<h6>You don\'t have any friends yet!</h6>';
+            echo '<h6 class="err">You don\'t have any friends yet!</h6>';
         }
         ?>
 

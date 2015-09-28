@@ -80,13 +80,13 @@ AppAsset::register($this);
             
             ['label' => Yii::$app->user->identity->profile->name , 'url' => ['/profile/update?id='.Yii::$app->user->id]],
             ['label' => 'Home', 'url' => ['/status/index']],
-            ['label' => 'Messages', 'url' => ['/site/message']],
-            ['label' => 'Notifications', 'url' => ['/site/notification']],
+            ['label' => Yii::t('app','Friends'), 'url' => ['/relationship']],
+            ['label' =>  Yii::t('app','Chat'), 'url' => ['/chat']],
             ['label' => 'Account','items' => [
-                ['label' => 'Chat', 'url' => ['/chat'],],
+                ['label' => 'Notifications', 'url' => ['/site/notification'],],
                 [
-                    'label' => Yii::t('app','Friends'),
-                    'url' => ['/relationship'],
+                    'label' => Yii::t('app','Messeages'),
+                    'url' => ['/site/message'],
                 ],
                 [
                     'label' => Yii::t('app','Contact info'),
