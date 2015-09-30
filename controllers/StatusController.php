@@ -8,6 +8,7 @@ use app\models\StatusSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Relationship;
 
 /**
  * StatusController implements the CRUD actions for Status model.
@@ -81,12 +82,15 @@ class StatusController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $id = Yii::$app->user->getId();
+        $relation= new Relationship();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'friendslist' => $query=$relation->getFriendList($id),
             ]);
         }
     }

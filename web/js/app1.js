@@ -53,9 +53,19 @@ $(document).ready(function() {
     var client;
     var r = Math.round(Math.random()*Math.pow(10,5));
     var d = new Date().getTime();
-    var cid = r.toString() + "-" + d.toString()
+    var cid = r.toString() + "-" + d.toString();
 
-    client = new Paho.MQTT.Client("localhost", 3000, cid );
+    /*var mosca = require("./");
+    var server = new mosca.Server({
+        http: {
+            port: 3000,
+            bundle: true,
+            static: './',
+            clientId: cid
+        }
+    });*/
+
+    client = new Paho.MQTT.Client("server", 3000, cid )
     client.onConnect = onConnect;
     client.onMessageArrived = onMessageArrived;
     client.onConnectionLost = onConnectionLost;

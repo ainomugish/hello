@@ -76,6 +76,23 @@ class UserContact extends \yii\db\ActiveRecord
         );
     }
 
+    // creates a record for the active user and sets all of the default status:
+    public static function initialize($user_id) {
+        $st = UserContact::find()->where(['user_id'=>$user_id])->one();
+        if (is_null($st)) {
+            $st=new UserContact();
+            $st->id = $user_id;
+            $st->contact_type='Phone';
+            $st->info='256 000 000 000';
+            $st->user_id= $user_id;
+
+            if(!$st->save()){
+                echo 'not saved';
+            }
+        }
+        return $st->id;
+    }
+
     /**
      * @inheritdoc
      */

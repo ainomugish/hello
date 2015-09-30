@@ -56,6 +56,11 @@ body {
     right: 0;
     margin: 0;
     padding: 0;
+    overflow-y: scroll;
+
+}
+.scr{
+    overflow-y: scroll;
 }
 .conv-list li {
     box-sizing: border-box;

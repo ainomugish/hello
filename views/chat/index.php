@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <aside class="conv-list-view">
         <header class="conv-list-view__header">
             <div class="cf">
-                <ul class="close-button-list">
+                <ul class="close-button-list">7
                     <li></li>
                     <li></li>
                     <li></li>

@@ -32,13 +32,8 @@ class UserContactController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new UserContactSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        $id = UserContact::initialize(Yii::$app->user->getId());
+        return $this->redirect(['update', 'id' => $id]);
     }
 
     /**
