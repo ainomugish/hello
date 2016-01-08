@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StatusSearch */
@@ -9,10 +9,11 @@ use yii\grid\GridView;
 
 $this->title = 'Statuses';
 $this->params['breadcrumbs'][] = $this->title;
+//$this->params['new'][] = $this
 //$this->params['breadcrumbs'][] = $dProvider;
 ?>
 <div class="status-index">
-
+    <div class="col-lg-3">
     <h3><?= Html::encode($this->title) ?></h3>
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -20,24 +21,32 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Status', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dProvider,
-        'filterModel' => $searchModel,
+
+    <?php echo ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemView' => '_vie',
+        /*'filterModel' => $searchModel,
+        'layout'=>"{summary}\n{items}\n{pager}",
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+
             'message:ntext',
             'permissions',
             'created_at',
             'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+            ['class' => 'yii\grid\ActionColumn'],*/
+        ]
+    );?>
 
     <p>
         <?= Html::a('see status', ['view?id=$id']/*, ['class' => 'btn btn-success'])*/) ?>
     </p>
+    </div>
+<div class="col-lg-3 pull-right">
+    <?= Html::encode($searchModel->message)
+      ?>
+    </div>
 
 </div>

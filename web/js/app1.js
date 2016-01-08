@@ -65,7 +65,7 @@ $(document).ready(function() {
         }
     });*/
 
-    client = new Paho.MQTT.Client("server", 3000, cid )
+    client = new Paho.MQTT.Client("127.0.0.1", 3000, cid )
     client.onConnect = onConnect;
     client.onMessageArrived = onMessageArrived;
     client.onConnectionLost = onConnectionLost;

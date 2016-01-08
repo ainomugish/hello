@@ -33,11 +33,22 @@ class StatusController extends Controller
      */
     public function actionIndex()
     {
+        $searchModel = new StatusSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /*public function actionIndex()
+    {
         //$id = Yii::$app->user->getId();
         $id = Status::initialize(Yii::$app->user->getId());
         return $this->redirect(['update', 'id' => $id]);
 
-    }
+    }*/
 
     /**
      * Displays a single Status model.

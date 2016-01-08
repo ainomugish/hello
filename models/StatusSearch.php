@@ -18,7 +18,7 @@ class StatusSearch extends Status
     public function rules()
     {
         return [
-            [['id', 'permissions', 'created_at', 'updated_at', 'user_id'], 'integer'],
+            [['permissions', 'created_at', 'updated_at'], 'integer'],
             [['message'], 'safe'],
         ];
     }
@@ -42,6 +42,7 @@ class StatusSearch extends Status
     public function search($params)
     {
         $query = Status::find();
+        #$query = Status::find()->where(['user_id'=> Yii::$app->user->id])->all();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -56,7 +57,7 @@ class StatusSearch extends Status
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
+            'id' => Yii::$app->user->id,
             'permissions' => $this->permissions,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
