@@ -57,11 +57,7 @@ class StatusSearch extends Status
         }
 
         $query->andFilterWhere([
-            'id' => Yii::$app->user->id,
-            'permissions' => $this->permissions,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'user_id' => $this->user_id,
+            'user_id' => Yii::$app->user->id,
         ]);
 
         $query->andFilterWhere(['like', 'message', $this->message]);

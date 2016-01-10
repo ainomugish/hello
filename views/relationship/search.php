@@ -114,4 +114,12 @@ $this->registerCssFile('@web/css/site1.css');
         ?>
     </div>
 
+    <div class="col-lg-3 pull-right">
+
+        <?= $this->render('_friends', [
+            'friendslist' => $friendslist,
+        ]) ?>
+
+    </div>
+
 </div>

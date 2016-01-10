@@ -146,11 +146,14 @@ class RelationshipController extends Controller
         $query = $dataProvider->getModels();
         $relation= new Relationship();
         $friendrequests = $relation->getFriendRequests();
+        $id = Yii::$app->user->getId();
+        $relation= new Relationship();
 
         return $this->render('search', [
            'friendsearch' => $query,
             'searchModel' => $searchModel,
             'friendrequests' => $friendrequests,
+            'friendslist' => $query=$relation->getFriendList($id),
         ]);
     }
 

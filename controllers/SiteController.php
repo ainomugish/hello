@@ -224,9 +224,38 @@ public $padding =10;
         return $this->render('profile');
     }
 
+    public function actionCreate()
+    {
+        $model = new Status();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->created_at = time();
+            $model->updated_at = time();
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            $id = Yii::$app->user->getId();
+            $relation= new Relationship();
+            return $this->render('create', [
+                'model' => $model,
+                'friendslist' => $query=$relation->getFriendList($id),
+            ]);
+        }
+    }
+
     public function actionMessage()
     {
+
+        $content= "no current emails to view";
+        Yii::$app->mailer->compose(['html'=>'message'],['content'=>$content]) // a view rendering result becomes the message body here
+        ->setFrom('from@domain.com')
+            ->setTo('to@domain.com')
+            ->setSubject('Message subject')
+            ->send();
+
         return $this->render('message');
+
     }
     public function actionNotification()
     {

@@ -4,4 +4,6 @@ use yii\helpers\Html;
 
 ?>
 
-<?= Html::encode($model->message) ?> <?= Html::encode($model->permissions) ?>
+<p><?= Html::encode($model->message) ?>Permission: <?= Html::encode($model->permissions) ?></p>
+<?= Html::encode($model->created_at) ?>,
+<?= Html::a('see status', ['view?id='.$model->id]/*, ['class' => 'btn btn-success'])*/) ?>

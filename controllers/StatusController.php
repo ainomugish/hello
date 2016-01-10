@@ -36,9 +36,13 @@ class StatusController extends Controller
         $searchModel = new StatusSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $id = Yii::$app->user->getId();
+        $relation= new Relationship();
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'friendslist' => $query=$relation->getFriendList($id),
         ]);
     }
 
@@ -71,15 +75,21 @@ class StatusController extends Controller
     {
         $model = new Status();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model->created_at = time();
-            $model->updated_at = time();
-            if ($model->save()) {
+        /*$model->id=Yii::$app->user->getId();*/
+        $model->created_at= TIME();
+        $model->updated_at = TIME();
+        $model->user_id = Yii::$app->user->getId();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
                 return $this->redirect(['view', 'id' => $model->id]);
-            }
+
         } else {
+            $id = Yii::$app->user->getId();
+            $relation= new Relationship();
             return $this->render('create', [
                 'model' => $model,
+                'friendslist' => $query=$relation->getFriendList($id),
             ]);
         }
     }

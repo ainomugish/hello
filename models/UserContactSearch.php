@@ -56,8 +56,8 @@ class UserContactSearch extends UserContact
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'user_id' => $this->user_id,
+            'user_id' => Yii::$app->user->id,
+
         ]);
 
         $query->andFilterWhere(['like', 'contact_type', $this->contact_type])

@@ -19,12 +19,13 @@ class User extends \dektrium\user\models\User {
     }
     public function getUserContacts()
     {
-        return $this->hasMany(UserContact::className(), ['id' => 'id'])->inverseOf('User');
+        return $this->hasMany(UserContact::className(), ['user_id' => 'id'])->inverseOf('User');
     }
     public function getUserStatus()
     {
         return $this->hasMany(Status::className(), ['user_id' => 'id'])->inverseOf('User');
     }
+
     /*public function getProfile()
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id'])->inverseOf('User');

@@ -86,7 +86,7 @@ AppAsset::register($this);
                 ['label' => 'Notifications', 'url' => ['/site/notification'],],
                 [
                     'label' => Yii::t('app','Messeages'),
-                    'url' => ['/site/message'],
+                    'url' => ['#'],#/site/message
                 ],
                 [
                     'label' => Yii::t('app','Contact info'),
