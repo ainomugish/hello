@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#mainform').submit(function(){
         var messageinput = $('#messagebox');
         message = new Paho.MQTT.Message(messageinput.val());
-        message.destinationName = "/can/"+$('#name').val();
+        message.destinationName = "/"+$('#receiver').val()+"/";
         messageinput.val('');
         messageinput.focus();
         client.send(message);
@@ -27,7 +27,7 @@ $(document).ready(function() {
     var onConnect = function(frame) {
         $('#status').toggleClass('status__indicator--online',true);
         $('#status1').text('ONLINE');
-        client.subscribe("/can/#");
+        client.subscribe("/"+$('#name').val()+"/");
         //var form = document.getElementById("example");
         //form.connected.checked= true;
     }
