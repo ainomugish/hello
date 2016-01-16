@@ -13,6 +13,7 @@ use app\models\ChatSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Relationship;
 
 
 /**
@@ -40,10 +41,15 @@ class ChatController extends Controller
     {
         $searchModel = new ChatSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        
+
+        $id = Yii::$app->user->getId();
+        $relation= new Relationship();
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'friendslist' => $query=$relation->getFriendList($id),
         ]);
     }
 

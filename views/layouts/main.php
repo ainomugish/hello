@@ -98,7 +98,7 @@ AppAsset::register($this);
                 ],
                 ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']]
+                    'linkOptions' => ['data-method' => 'post',]]
                 /*[
                     'label' => Yii::t('app','Logout').' (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
@@ -113,6 +113,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $navItems,
+
     ]);
 
     NavBar::end();

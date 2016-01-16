@@ -41,10 +41,9 @@ use app\controllers\ProfileController;
                 <h2 class="text">Scan QR Code to Login.</h2>
                 <br><br>
                 <p class="err"><b><?= Html::encode($th) ?></b></p>
-                <p >Pull out you phone</p><br>
-                <p>Open Mobisquid App</p><br>
-                <p>Scan the picture on the right</p><br>
-                <p>Voila, you will be authenticated</p>
+                <h3>Pull out you phone</h3><h3> Open Mobisquid App</h3>
+                <h3>Scan the picture on the right</h3>
+
 
 
                 <!--<p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>-->
