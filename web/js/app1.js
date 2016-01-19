@@ -2,7 +2,7 @@ $(document).ready(function() {
     function doSubscribe() {
 
     }
-
+    var r=0;
     $(function() {
         $('#input-box').focus();
     });
@@ -34,7 +34,9 @@ $(document).ready(function() {
                 //messageinput.outerHTML.hasOwnProperty('popup-messages').innerHTML.append("<li><span class=\"left\">"+ message.payloadString +"</span><div class=\"clear\"></div></li>");
                 //$("#msg-list").append("<li><span class=\"left\""+messageinput.val()+"</span><div class=\"clear\"></div></li>");
                 $('#msg-list'+element_id).append("<li><span class=\"right\">"+messageinput.val()+"</span><div class=\"clear\"></div></li>");
-
+                message.qos =1;
+                r=id;
+                console.log(message.id);
                 message.destinationName = "/"+$('#id'+id).val();
                 console.log(message.destinationName);
                 messageinput.val('');
@@ -49,7 +51,7 @@ $(document).ready(function() {
     /*$("textarea").keyup(function(e){
         if((e.keyCode || e.which) == 13) { //Enter keycode
             if($(this).hasClass("first"))
-                alert("first ta clicked");
+                alert("first ta clicked");element_id
             else
                 alert("the other ta clicked");
         }
@@ -89,7 +91,8 @@ $(document).ready(function() {
     }
 
     function onMessageArrived(message) {
-        console.log(message.payloadString);
+
+        console.log(r);
         var receiver = $('#user_id').val();
         $('#msg-list'+receiver).append("<li><span class=\"left\">"+ message.payloadString +"</span><div class=\"clear\"></div></li>");
         //$('.popup-messages').append("<div class=\"message--send\"><div class=\"message__bubble--send\"><p>"+ message.payloadString + "</p></div><figure class=\"message__avatar\"><img src=\"\" /></figure></div><div class=\"cf\"></div>");
