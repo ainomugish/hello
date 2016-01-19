@@ -80,17 +80,29 @@ AppAsset::register($this);
             
             ['label' => Yii::$app->user->identity->profile->name , 'url' => ['/profile/update?id='.Yii::$app->user->id]],
             ['label' => 'Home', 'url' => ['/status/index']],
+            /*['label' => 'Notifications', 'url' => ['/site/notification'],'linkOptions' =>['id'=>'notificationLink'],'options' => ['id' => 'notification_li']],*/
+
+            Html::beginTag('li',['id' => 'notification_li']),
+            Html::tag('span','',['id' => 'notification_count']),
+                Html::begintag('div',['id' => 'notificationContainer',]),
+                    Html::tag('div', 'Notifications', ['id' => 'notificationTitle',]),
+                    Html::tag('div', '', ['id' => 'notificationsBody','class' => 'notificationsBody',]),
+                    Html::beginTag('div',['id' => 'notificationFooter',]),
+                        Html::a('see all','#'),
+                    Html::endTag('div'),
+                Html::endTag('div'),
+            Html::endTag('li'),
             ['label' => Yii::t('app','Friends'), 'url' => ['/relationship']],
             ['label' =>  Yii::t('app','Chat'), 'url' => ['/chat']],
             ['label' => 'Account','items' => [
-                ['label' => 'Notifications', 'url' => ['/site/notification'],],
+
                 [
                     'label' => Yii::t('app','Messeages'),
                     'url' => ['#'],#/site/message
                 ],
                 [
                     'label' => Yii::t('app','Contact info'),
-                    'url' => ['/user-contact'],
+                    'url' => ['/user-contact/index'],
                 ],
                 [
                     'label' => Yii::t('app','Settings'),

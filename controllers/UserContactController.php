@@ -67,6 +67,9 @@ class UserContactController extends Controller
     {
         $model = new UserContact();
 
+
+        $model->user_id = Yii::$app->user->getId();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
